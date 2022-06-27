@@ -3,13 +3,11 @@ var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10
 
-console.log(playerName, playerHealth, playerAttack);
-
-var enemyName = "Roberto";
+var enemyNames = ["Roberto", "Amy Andriod", "Robo Trumble"];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
-var fight = function() {
+var fight = function(enemyName) {
     window.alert("welcome to the Robot Gladiators");
     
     //does the palyer want to fight?
@@ -72,4 +70,6 @@ var fight = function() {
     }
 };
 
-fight()
+for(var i = 0; i < enemyNames.length; i++) {
+    fight(enemyNames[i]);
+}
