@@ -1,55 +1,60 @@
 var fight = function(enemy) {
+    var isPlayerTurn = true;
+    if(Math.random() > 0.5) {
+        isPlayerTurn = false;
+    }
     
     while(enemy.health > 0 && playerInfo.health > 0) {
-
-        //does the palyer want to fight?
-        if (fightOrSkip()) {
-            break;
-        }
-
-        //subtract the value of 'playerAttack' 'from enemy.health' and use that result to update 'enemy.health' variable
-        var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
-        enemy.health = Math.max(0, enemy.health - damage);
-        
-        //log a resulting message to console
-        console.log(
-            playerInfo.name + " attacked " + enemy.name + ". " + enemy.name + " now has " + enemy.health + " health remaining"
-        );
-
-        //check enemys health
-        if (enemy.health<= 0) {
-            window.alert(enemy.name + " has died!");
-
-            //award money for winning
-            playerInfo.money = playerInfo.money + 20
-            break;
-        } 
-        else {
-            window.alert(enemy.name + " still has " + enemy.health + " health left.");
-        }
-        
-        //subtract the value of 'enemy.attack' 'from playerHealth' and use that result to update 'playerHealth' variable
-        var damage = randomNumber(enemy.attack-3, enemy.attack)
-        playerInfo.health = Math.max(0, playerInfo.health - damage);
-        
-        //log a resulting message to console
-        console.log(
-            enemy.name + " attacked " + playerInfo.name + ". " + playerInfo.name + " now has " + playerInfo.health + " health remaining"
-        );
-        
-        //check player health
-        if (playerInfo.health<= 0) {
-            window.alert(playerInfo.name + " has died!");
-            break;
-        } 
-        
-        else {
-            window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
+        debugger;
+        if(isPlayerTurn) {
+            if (fightOrSkip()) {
+                break;
             }
-        //if player enter invalid option
-    }
-}
 
+            //subtract the value of 'playerAttack' 'from enemy.health' and use that result to update 'enemy.health' variable
+            var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
+            enemy.health = Math.max(0, enemy.health - damage);
+            
+            //log a resulting message to console
+            console.log(
+                playerInfo.name + " attacked " + enemy.name + ". " + enemy.name + " now has " + enemy.health + " health remaining"
+            );
+
+            //check enemys health
+            if (enemy.health<= 0) {
+                window.alert(enemy.name + " has died!");
+
+                //award money for winning
+                playerInfo.money = playerInfo.money + 20
+                break;
+            } 
+            else {
+                window.alert(enemy.name + " still has " + enemy.health + " health left.");
+            }
+        } else {    
+            //subtract the value of 'enemy.attack' 'from playerHealth' and use that result to update 'playerHealth' variable
+            var damage = randomNumber(enemy.attack-3, enemy.attack)
+            playerInfo.health = Math.max(0, playerInfo.health - damage);
+            
+            //log a resulting message to console
+            console.log(
+                enemy.name + " attacked " + playerInfo.name + ". " + playerInfo.name + " now has " + playerInfo.health + " health remaining"
+            );
+            
+            //check player health
+            if (playerInfo.health<= 0) {
+                window.alert(playerInfo.name + " has died!");
+                break;
+            } 
+            
+            else {
+                window.alert(playerInfo.name + " still has " + playerInfo.health + " health left.");
+            }
+            //if player enter invalid option
+        }
+        isPlayerTurn = !isPlayerTurn;
+    }
+};
 //function to start game
 var startGame = function() {
     // reset player stats
